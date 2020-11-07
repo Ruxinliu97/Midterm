@@ -164,8 +164,13 @@ pander(summary(fit_photo_2))
 
 Based on the result so far please perform statistical inference to compare the comparison of interest.
 
-```{r }
 
+  The linear regression model fitted for the data is: log(y) = 2.79 + 0.30 remote_learning - 0.13 remote_working + 0.75 working - 0.64 male + 0.68 ios. The intercept is 2.79, which means that for a female uses Android system and from the learning group (reference group), the estimated picture she will take for a week is 16 ($e^{2.79}$). When keeping all other variables constant, the remote learning group is estimated to take 35% more pictures compared to the learning group ($(e^{0.3}-1)*100$). When keeping all other variables constant, the remote working group is estimated to take 12% less pictures compared to the learning group ($(e^{-0.13}-1)*100$). When keeping all other variables constant, the working group is estimated to take 112% more pictures compared to the learning group ($(e^{0.75}-1)*100$). 
+  
+   Although from the interpretation, it seems that there are clear difference between the number of pictures taken by different groups, except for the intercept all other predictors are not statistically significant on the 95% level. The results of the 95% confidence interval for the coefficients are shown below and all coefficients for the group indicator accross 0.
+  
+```{r }
+kable(confint(fit_photo))
 ```
 
 
@@ -173,17 +178,30 @@ Based on the result so far please perform statistical inference to compare the c
 
 Please clearly state your conclusion and the implication of the result.
 
+  The model fit for the photo data is the linear regression, where the response is the log-transformed Picture_number and the predictors include Group (factor with 4 levels), Gender and Operating_system. From the model output, none of the coefficients of the group indicators are statistically significant on a 95% confidence level. Although p-value can be misleading sometime, since the assumptions of the linear model are valid in this case, p values could be used as reference. The very large p-value of the coefficients suggest that there is no difference among the groups. However, since the sample size is very small and the sample may not be representative, the study possibly have some errors, which make the results less convincing. 
+
+  In conclusion, the answer to the question of interest of this study is that the number of pictures taken by cell phone for a week does not vary among groups. However, in order to make the results more accurate and persuasive, better experiment design and better sample collection are needed to increase the power of the study.  
 
 ### Limitations and future opportunity. (10pts)
 
-Please list concerns about your analysis.  Also, please state how you might go about fixing the problem in your future study.
+Please list concerns about your analysis. Also, please state how you might go about fixing the problem in your future study.
 
 1. Random Sampling
 
+  This photo data is collected by surveys and the participants are chosen from my contact list. This cannot be considered as random sampling, because I will tend to pick friends that are closer to me and also there is clear gender difference among my participants. I intentionally select people from the same age group, however, I realized that age can also be an important variable to include in the analysis. This concern could be fixed by using public survey website online to collect data or by interviewing random people from public regardless of their gender and age.
+
 2. Sample Size
 
-3. 
+  As the power analysis shows, the sample size in each group is way too small and the study is very likely to be a harmful underpowered study. In future studies, sample size should be increased by collecting data from more randomly selected participants, and the number of participants in each group does not need to be the same.
 
+3. Measurement Time Range
+
+  In this data, each participant was asked about the number of pictures they took with cell phones in a whole week. However, reducing the time range to 5 business days may be a better choice due to the grouping. For example, someone who is working and someone who is studying show different status from Monday to Friday, but may not be that different during weekends. This concern can be improved by reformatting the survey question and can even ask participants to only count pictures they took when they were working or studying, which may be very challenging to do.
+
+4. Multilevel Regression Model
+
+  I believe that a multilevel model will be better to answer my question of interest than the simple linear model . Unfortunately, some of the key information are missing from the collected data. For my question, it is possible to find a natural cluster, such as the company or the school, but is relatively hard to perform. Instead, repeated measurements could be a more applicable solution. In future studies, I could ask the participants to provide the number of pictures they took for some consecutive weeks(from Monday to Friday), which allows me to fit the multilevel model.
+  
 
 ### Comments or questions
 If you have any comments or questions, please write them here.
